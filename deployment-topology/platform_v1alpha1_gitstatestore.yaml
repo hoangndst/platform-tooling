@@ -1,0 +1,12 @@
+apiVersion: platform.kratix.io/v1alpha1
+kind: GitStateStore
+metadata:
+  name: default
+spec:
+  path: kratix/
+  secretRef:
+    # The name and namespace of the secret to use to authenticate: required
+    name: github-secret
+    namespace: default
+  url: https://github.com/hoangndst/platform-tooling
+  branch: main
