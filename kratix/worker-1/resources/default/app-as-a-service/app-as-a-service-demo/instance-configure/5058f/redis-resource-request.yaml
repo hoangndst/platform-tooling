@@ -1,9 +1,0 @@
-apiVersion: marketplace.kratix.io/v1alpha1
-kind: redis
-metadata:
-  name: todo
-  namespace: default
-  annotations:
-    destinationSelector: ""
-spec:
-  size: small
