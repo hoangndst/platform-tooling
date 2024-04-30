@@ -1,0 +1,11 @@
+apiVersion: marketplace.kratix.io/v1alpha1
+kind: postgresql
+metadata:
+  name: todo
+  namespace: default
+  annotations:
+    destinationSelector: ""
+spec:
+  env: dev
+  teamId: acid
+  dbName: tododb
