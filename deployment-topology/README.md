@@ -48,3 +48,9 @@ This document describes how to setup a multi cluster deployment using Kratix.
 2. New commit to the GitOps repository will trigger the deployment of Jenkins Promise on the worker cluster.
     ![Jenkins Promise](../assets/jenkins-promise-2.png)
     ![Jenkins Promise](../assets/jenkins-promise-1.png)
+
+# Create platform cluster service account token
+```bash
+kubectl -n kube-system create serviceaccount kratix-sa
+kubectl create clusterrolebinding kratix-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:kratix-sa
+```
