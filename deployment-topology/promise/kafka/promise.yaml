@@ -47,7 +47,7 @@ spec:
           namespace: default
         spec:
           containers:
-          - image: hoangndst/kafka-configure-pipeline:v0.1.0
+          - image: ghcr.io/syntasso/kratix-marketplace/kafka-configure-pipeline:v0.1.0
             name: configure
     promise:
       configure:
@@ -58,6 +58,6 @@ spec:
           namespace: default
         spec:
           containers:
-          - image: hoangndst/kafka-configure-promise-pipeline:v0.1.0
+          - image: ghcr.io/syntasso/kratix-marketplace/kafka-configure-promise-pipeline:v0.1.0
             name: configure
 status: {}
