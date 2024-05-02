@@ -8,5 +8,5 @@ spec:
     # The name and namespace of the secret to use to authenticate: required
     name: github-secret
     namespace: default
-  url: https://github.com/hoangndst/platform-tooling
+  url: https://github.com/Choco-Boba/backstage
   branch: main
