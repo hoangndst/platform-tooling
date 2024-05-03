@@ -54,3 +54,4 @@ This document describes how to setup a multi cluster deployment using Kratix.
 kubectl -n kube-system create serviceaccount kratix-sa
 kubectl create clusterrolebinding kratix-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:kratix-sa
 ```
+![Backstage](../assets/kratix.png)

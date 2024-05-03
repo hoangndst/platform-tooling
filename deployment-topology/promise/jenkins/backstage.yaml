@@ -1,0 +1,50 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: jenkins-promise-template
+  title: Jenkins
+  description: Jenkins as a Service
+  tags:
+    - syntasso
+    - kratix
+    - jenkins
+spec:
+  type: service
+  lifecycle: experimental
+  owner: hoangndst
+  parameters:
+    - title: Jenkins as a Service
+      required:
+        - name
+        - env
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Name for Jenkins instance
+          ui:autofocus: true
+        env:
+          title: Environment
+          type: string
+          description: Environment for Jenkins instance
+          enum:
+            - dev
+            - staging
+            - prod
+          ui:widget: select
+          ui:options:
+            placeholder: Select environment
+  steps:
+  - id: k-apply
+    name: Create a Jenkins
+    action: kubernetes:apply
+    input:
+      namespaced: true
+      manifest: |
+        apiVersion: marketplace.kratix.io/v1alpha1
+        kind: jenkins
+        metadata:
+          name: ${{ parameters.name }}
+          namespace: default
+        spec:
+          env: ${{ parameters.env }}

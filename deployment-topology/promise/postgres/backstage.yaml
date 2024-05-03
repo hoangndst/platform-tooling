@@ -1,0 +1,62 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: postgres-promise-template
+  title: PostgreSQL
+  description: PostgreSQL as a Service
+  tags:
+    - syntasso
+    - kratix
+    - postgres
+spec:
+  type: service
+  lifecycle: experimental
+  owner: hoangndst
+  parameters:
+    - title: PostgreSQL as a Service
+      required:
+        - name
+        - env
+        - dbName
+        - teamId
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Name for PostgreSQL instance
+          ui:autofocus: true
+        dbName:
+          title: Database Name
+          type: string
+          description: Database name. A database will be created with this name. The owner of the database will be the teamId.
+        teamId:
+          title: Team ID
+          type: string
+          description: Team ID. A superuser role will be created with this name.
+        env:
+          title: Environment
+          type: string
+          description: Environment for Jenkins instance
+          enum:
+            - dev
+            - staging
+            - prod
+          ui:widget: select
+          ui:options:
+            placeholder: Select environment
+  steps:
+  - id: k-apply
+    name: Create a PostgreSQL
+    action: kubernetes:apply
+    input:
+      namespaced: true
+      manifest: |
+        apiVersion: marketplace.kratix.io/v1alpha1
+        kind: postgresql
+        metadata:
+          name: ${{ parameters.name }}
+          namespace: default
+        spec:
+          env: ${{ parameters.env }}
+          teamId: ${{ parameters.teamId }}
+          dbName: ${{ parameters.dbName }}
